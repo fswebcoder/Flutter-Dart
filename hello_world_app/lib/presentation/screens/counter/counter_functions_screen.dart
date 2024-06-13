@@ -43,56 +43,61 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
+          CustomButton(
+            icon: Icons.refresh_rounded,
             onPressed: () {
               setState(() {
                 counter = 0;
               });
             },
-            child: const Icon(
-              Icons.refresh_rounded,
-              color: Colors.black87,
-              size: 35,
-            ),
           ),
+
           const SizedBox(height: 10),
-          FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
+          CustomButton(
+            icon: Icons.exposure_plus_1_sharp,
             onPressed: () {
               setState(() {
                 counter++;
               });
             },
-            child: const Icon(
-              Icons.plus_one,
-              color: Colors.black87,
-              size: 35,
-            ),
           ),
           const SizedBox(height: 10),
-          FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
+          CustomButton(
+            icon: Icons.exposure_minus_1_sharp,
             onPressed: () {
               setState(() {
                 if (counter > 0) {
                   counter--;
                 }
+              
               });
             },
-            child: const Icon(
-              Icons.exposure_minus_1_sharp,
-              color: Colors.black87,
-              size: 35,
-            ),
-          )
+          
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final IconData icon;
+  final  VoidCallback? onPressed;
+
+  const CustomButton({super.key, required this.icon, this.onPressed });
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(50),
+      ),
+      onPressed:onPressed,
+      enableFeedback: true,
+      child: Icon(
+        icon,
+        color: Colors.black87,
+        size: 35,
       ),
     );
   }
